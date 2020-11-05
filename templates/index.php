@@ -22,11 +22,13 @@
     mysqli_close($conn);
 
     //print_r($pizzas);
+
+    //explode(',', $pizzas[0]['ingredients']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>form</title>
 </head>
 
     <?php include('header.php') ; ?>
@@ -42,7 +44,11 @@
                     <div class="card z-depth-0">
                         <div class="card-content center">
                             <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
-                            <div><?php echo htmlspecialchars($pizza['ingredients']); ?></div>
+                            <ul>
+                                <?php foreach(explode(',', $pizza['ingredients']) as $ing){ ?>
+                                    <li><?php echo htmlspecialchars($ing) ; ?></li>
+                                <?php } ?>
+                            </ul>
                         </div>
                         <div class="card-action right-align">
                             <a href="#" class="brand-text">more info</a>
@@ -51,7 +57,6 @@
                 </div>
 
             <?php } ?>
-
         </div>
     </div>
 
