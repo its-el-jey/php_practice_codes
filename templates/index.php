@@ -1,13 +1,6 @@
 <?php 
+    include('/xampp/htdocs/practice_codes/config/db_connect.php');
     //MySQLi or PDO
-
-    //connect to database
-    $conn = mysqli_connect('localhost', 'LJ', 'iloveyouoppa', 'practice');
-
-    //check the connection
-    if(!$conn){
-        echo 'Connection error: ' . mysqli_connect_error();
-    }
 
     // write query for all pizza
     $sql = 'SELECT title, ingredients, id FROM pizza ORDER BY created_at';
@@ -57,6 +50,7 @@
                 </div>
 
             <?php } ?>
+
         </div>
     </div>
 

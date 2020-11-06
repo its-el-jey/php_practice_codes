@@ -1,5 +1,5 @@
 <?php 
-
+    include('/xampp/htdocs/practice_codes/config/db_connect.php');
     // GET METHOD is visible to everyone, only used for sending non-sensitive data
     // if(isset($_GET['submit'])){
     //     echo $_GET['email'];
@@ -54,10 +54,22 @@
         if(array_filter($errors)){
             //echo 'errors in the form';
         } else {
-            //redirect user
-            header('Location: index.php');
-        }
-
+            //protect data that getting into database
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $title = mysqli_real_escape_string($conn, $_POST['title']);
+            $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+            //create sql
+            //add data to database
+            $sql = "INSERT INTO pizza(title, email, ingredients) VALUES('$title' , '$email' , '$ingredients')";
+            //save to db and check
+            if(mysqli_query($conn, $sql)){
+                //success, redirect user
+                header('Location: index.php');
+            }  else {
+                //error
+                echo 'query error: ' . mysqli_error($conn);
+            }
+        }   
     } // end of the POST
 
 ?>

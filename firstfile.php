@@ -1,7 +1,7 @@
 <?php
     //echo 'hello, ninjas' ;
     $name = "yoshi";
-    echo $name;
+    print $name;
 
     $peopleOne = ['shaun' , 'crystal', 'ryu'];
     //printing array
