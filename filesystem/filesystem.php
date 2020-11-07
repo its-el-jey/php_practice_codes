@@ -1,30 +1,30 @@
 <?php 
 
-    // file system - part 1
-    // $quotes = readfile('readme.txt');
-    // echo $quotes;
+    // file system - part 2
 
     $file = 'readme.txt';
 
-    if(file_exists($file)){
-        //read file
-        echo readfile($file);
+    //opening a file for reading
+    // $handle = fopen($file, 'r'); //r means read only
+    // $handle = fopen($file, 'r+');    //r+ allows you to write from first line
+    $handle = fopen($file, 'a+');   //write at the end of line
 
-        //copy file
-        copy($file, 'quotes.txt') . '<br />';
+    // read the file
+    // echo fread($handle, filesize($file));   //read all
+    // echo fread($handle, 112);   //read 112 of file
 
-        //absolute path
-        echo realpath($file) . '<br />';
+    // // read a single line
+    // echo fgets($handle);
+    
+    // // read a single character
+    // echo fgetc($handle);
 
-        //file size
-        echo filesize($file) . '<br />';
+    // writing to a file
+    fwrite($handle, "\nEverything popular is wrong");
+    
+    //close the file
+    fclose($handle);
 
-        //rename file
-        rename($file, 'test.txt');
-    } else {
-        echo 'file does not exist';
-    }
-
-    //make directory
-    // mkdir('quotes');
+    //delete a file
+    unlink($file)
 ?>
