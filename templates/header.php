@@ -1,7 +1,15 @@
 <?php 
     session_start();
 
-    $name = $_SESSION['name'];
+    //unset and delete name
+    if($_SERVER['QUERY_STRING'] == 'noname'){
+        //unset($_SESSION['name']);
+        //unset all
+        session_unset();
+    }
+    //you will get error because we are trying to access the $name that doesn't exist anymore because we've unset it
+    //so we use NULL COALESCING ?? 'default value'
+    $name = $_SESSION['name'] ?? 'Guest';
 ?>
 
 
